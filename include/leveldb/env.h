@@ -21,24 +21,6 @@
 #include "leveldb/export.h"
 #include "leveldb/status.h"
 
-// This workaround can be removed when leveldb::Env::DeleteFile is removed.
-#if defined(_WIN32)
-// On Windows, the method name DeleteFile (below) introduces the risk of
-// triggering undefined behavior by exposing the compiler to different
-// declarations of the Env class in different translation units.
-//
-// This is because <windows.h>, a fairly popular header file for Windows
-// applications, defines a DeleteFile macro. So, files that include the Windows
-// header before this header will contain an altered Env declaration.
-//
-// This workaround ensures that the compiler sees the same Env declaration,
-// independently of whether <windows.h> was included.
-#if defined(DeleteFile)
-#undef DeleteFile
-#define LEVELDB_DELETEFILE_UNDEFINED
-#endif  // defined(DeleteFile)
-#endif  // defined(_WIN32)
-
 namespace leveldb {
 
 class FileLock;

@@ -126,7 +126,6 @@ target_sources(leveldb
         "port/thread_annotations.h"
         "util/coding.cc"
         "util/coding.h"
-        "util/random.h"
         "util/mutexlock.h"
 
         # Only CMake 3.3+ supports PUBLIC sources in targets exported by "install".
